@@ -20,5 +20,13 @@
 ### Application Images
 
 > Login
+![Login](https://preview.ibb.co/j9DRun/login.png)
 
-![alt text](https://preview.ibb.co/j9DRun/login.png)
+> Register
+![Register](https://preview.ibb.co/f3MeEn/register.png)
+
+> All Groups
+![All Groups](https://preview.ibb.co/hrHVLS/all_groups.png)
+
+> Just groups that i create
+![All Groups](https://preview.ibb.co/i69hZn/my_groups.png)
