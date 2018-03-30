@@ -1,0 +1,87 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+    <!-- 
+      Formulario do modal para adicionar um novo grupo.
+      Só irá aparecer se 'progressoCompartilhamento' == 'pendente', que indica que
+    estamos no aguardo do preenchimento dos campos.
+    -->
+    <div class="modal-content" *ngIf="progressoCompartilhamento ==  'pendente'">
+      <form [formGroup]="formulario" (ngSubmit)="compartilhar()">
+        <div class="modal-header">
+          <h5 class="modal-title">Criar uma publicação</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <input
+            type="text"
+            placeholder="Nome do grupo"
+            class="form-control"
+            formControlName="nome"
+            maxlength=50
+          >
+          <br/>
+          <textarea
+            type="text" 
+            placeholder="Descrição" 
+            class="form-control" 
+            formControlName="descricao" 
+            maxlength=256
+            rows="4"
+          >
+          </textarea>
+          <br/>
+          <input
+            type="text"
+            placeholder="Link do grupo"
+            class="form-control"
+            formControlName="link"
+            maxlength=100
+        >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Compartilhar!</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 
+      Modal que irá aparecer enquanto estivermos processando o POST no servidor.
+      Normalmente, aparece tão rápido que quase não da para notar.
+      Só irá aparecer se 'progressoCompartilhamento' == 'andamento', que indica que
+    estamos no aguardo do retorno da conclusão por parte do servico.
+    -->
+    <div class="modal-content" *ngIf="progressoCompartilhamento ==  'andamento'">   
+        <div class="modal-header">
+          <h5 class="modal-title">Processando...</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <p style="text-align: center;">COMPARTILHAMENTO EM ANDAMENTO</p>
+    </div>
+
+    <!-- 
+      Modal que irá aparecer quando o POST for concluido.
+      Só irá aparecer se 'progressoCompartilhamento' == 'concluido', que indica que
+    o novo grupo já está em nosso servidor.
+    -->
+    <div class="modal-content" *ngIf="progressoCompartilhamento ==  'concluido'">   
+        <div class="modal-header">
+          <h5 class="modal-title">Finalizado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) = "resetandoProgresso()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <p style="text-align: center;">GRUPO COMPARTILHADO COM SUCESSO!</p>
+    </div>
+
+  </div>
+</div>

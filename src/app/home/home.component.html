@@ -1,0 +1,79 @@
+<!-- Para inclusao de icones -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="container">
+    <!-- Imagem do topo da página -->
+    <img src="../../assets/topo.jpg" class="img-fluid" [@slide-topo]="estadoTopo">
+
+    <!-- Botão/Link de logout -->
+    <button type="button" class="btn btn-secondary float-right" (click)="sair()" style="margin-top:5px;">Logout</button> 
+    <br><br><br>
+    
+    <!-- Botões para indicar quais grupos devem aparecer na tabela -->
+    <button type="button" class="btn btn-outline-primary" (click)="exibirTodos()">Todos</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="exibirMeus('meus')">Meus</button>
+    
+    <!-- Botao para inserir e recarregar grupos -->
+    <a class="float-right" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal">
+        <i class="material-icons" id="botao-add">add_circle_outline</i>
+    </a>
+    <a class="float-right" href="javascript:void(0)" (click)="recarregarGrupos()" >
+        <i class="material-icons" id="botao-refresh">refresh</i>
+    </a>
+    
+    <!-- Tabela de grupos -->
+    <table *ngIf="carregando == false" class="table" style="margin-top:10px;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col" >Descrição</th>
+                <th scope="col" >Link</th>
+                <th scope="col">Distancia (m)</th>
+                <th scope="col">Excluir</th>
+            </tr>
+        </thead>
+
+        <tbody> 
+            <tr *ngFor="let grupo of data.sort(compare); let i = index" [attr.data-index]="i">
+                <!-- 
+                    O grupo só irá aparecer se 'valid'==1.
+                    Usado no ts para mostrar só os grupos criados
+                pelo usuário logado, por exemplo.
+                -->
+                <ng-container *ngIf="grupo.valid">
+                    <td>{{ grupo.nome }}</td>
+                    <td>{{ grupo.descricao }}</td>
+                    <td>
+                        <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        (click)="abrirLink(grupo.link)">
+                        Entrar
+                    </button></td>
+                    <td>{{ grupo.distancia }}</td>
+                    <td>
+                        <!-- Só aparecerá essa opção se esse grupo tiver sido postado pelo usuário logado -->
+                        <a href="javascript:void(0)"><i *ngIf="grupo.excValid" class="material-icons" (click)="apagarGrupo(grupo.key, i)">delete</i></a>
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Gif de carregamento. Só aparece enquanto nosso servidor não retorna os grupos -->
+    <div *ngIf="carregando"class="text-center">
+        <img src="../assets/spinner.gif" alt="Spinner" id="spinner">
+    </div>
+
+
+    <div *ngIf="queryVazia">
+        <p class="text-center" style="color:red"> Nenhum grupo encontrado </p>
+    </div>
+
+    <!-- 
+        Modal que só é chamado quando clicamos para adicionar um novo grupo 
+        Recebe um evento emitido por 'incluir-grupo', e executa 'recarregarGrupos()'
+    -->
+    <app-incluir-grupo (atualizarGrupos)="recarregarGrupos()"></app-incluir-grupo>
+    
+</div>

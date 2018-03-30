@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+
+    <!-- Imagem/Banner da lateral esquerda -->
+    <div class="col-sm-6 d-flex justify-content-end" [@slide-banner]="estadoBanner">
+      <app-banner></app-banner>
+    </div>
+
+    <!-- 
+      Logica condicional.
+      Se 'cadastro' == 'true', sera renderizado 'app-cadastro'.
+      Senao, sera renderizado 'app-login'.
+    -->
+    <div *ngIf="cadastro; else formLogin">
+      <div class="col-sm-6 d-flex justify-content-start" [@slide-painel]="estadoPainel">
+        <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
+      </div> 
+    </div>
+    <ng-template #formLogin>
+      <div class="col-sm-6 d-flex justify-content-start" [@slide-painel]="estadoPainel">
+          <app-login (exibirPainel)="exibirPainel($event)"></app-login>
+      </div> 
+    </ng-template>
+
+  </div>
+</div>

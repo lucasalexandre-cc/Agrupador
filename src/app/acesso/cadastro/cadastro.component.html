@@ -1,0 +1,58 @@
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+
+    <!-- Imagem/logo -->
+    <div class="text-center">
+      <img src="../../assets/logo-agrupador.png" class="img-fluid float-center" style="margin-bottom:10px">
+    </div>
+    
+    <!-- Formulario de cadastro -->
+    <form [formGroup]="formulario" (ngSubmit)="cadastrarUsuario()">
+      <div class="form-group">
+        <input 
+          type="email" 
+          class="form-control" 
+          placeholder="E-mail"
+          formControlName="email"
+        >
+      </div>
+      <div class="form-group">
+        <input 
+          type="text"
+          class="form-control" 
+          placeholder="Nome completo"
+          formControlName="nome_completo"
+        >
+      </div>
+      <div class="form-group">
+        <input 
+          type="text"
+          class="form-control" 
+          placeholder="Nome de usuário"
+          formControlName="nome_usuario"
+        >
+      </div>
+      <div class="form-group">
+        <input 
+          type="password"
+          class="form-control" 
+          placeholder="Senha"
+          formControlName="senha"
+        >
+      </div>
+      <button type="submit" class="btn btn-info btn-sm btn-block">Cadastre-se</button>
+    </form>
+    <hr />
+  </div>
+</div>
+
+<br />
+
+<!-- Opcao de transicao para o painel de Login -->
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+    <p class="card-text">
+      Tem uma conta? <a href="javascript:void(0);" (click)="exibirPainelLogin()" class="card-link">Faça login</a>
+    </p> 
+  </div>
+</div>

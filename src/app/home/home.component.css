@@ -1,0 +1,9 @@
+/* Botoes de Adicionar Grupo e Atualizar Grupos ('refresh') */
+#botao-add {
+    font-size:35px; 
+    color:green;
+}
+#botao-refresh {
+    font-size:35px; 
+    color:rgb(236, 236, 22);
+}
