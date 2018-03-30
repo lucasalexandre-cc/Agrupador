@@ -6,6 +6,7 @@
 - Login/Logout
 - Geolocation
 - Single Page Application
+- Responsive
 
 ### Technologies
 - Angular 4 
@@ -20,13 +21,20 @@
 ### Application Images
 
 > Login
+
 ![Login](https://preview.ibb.co/j9DRun/login.png)
 
 > Register
+
 ![Register](https://preview.ibb.co/f3MeEn/register.png)
 
 > All Groups
+
 ![All Groups](https://preview.ibb.co/hrHVLS/all_groups.png)
 
 > Just groups that i create
+
 ![All Groups](https://preview.ibb.co/i69hZn/my_groups.png)
+
+
+obs: the page has several animations that can not be shown in these images
